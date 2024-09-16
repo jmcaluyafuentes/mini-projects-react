@@ -1,0 +1,25 @@
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+.click-screen {
+  border-top: 1px solid red;
+  height: 80vh;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
