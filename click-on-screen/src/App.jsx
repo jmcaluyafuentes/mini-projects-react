@@ -21,11 +21,20 @@ const App = () => {
     setCache([...cache, lastDot]);
   }
 
+  const redo = () => {
+    if (cache.length === 0) return;
+    const lastCache = cache[cache.length - 1];
+    const updatedCache = cache.slice(0, -1);
+
+    setDots([...dots, lastCache]);
+    setCache(updatedCache);
+  }
+
   return (
     <div>
       <div className="buttons-container">
         <button onClick={undo}>Undo</button>
-        <button>Redo</button>
+        <button onClick={redo}>Redo</button>
       </div>
       <div className="click-screen" onClick={clickScreen}>
         {dots.map(({id, x, y}) => (
