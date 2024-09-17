@@ -15,6 +15,12 @@ const App = () => {
     setTodos(updatedTodos);
   }
 
+  const handleKeyDown = ({ key }) => {
+    if (key === 'Enter') {
+      addTodo();
+    }
+  }
+
   return (
     <div>
       <h3>Todo list</h3>
@@ -24,6 +30,7 @@ const App = () => {
         placeholder="Add the todo item here..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={handleKeyDown}
         aria-label="Todo input"
       />
       <button onClick={addTodo} aria-label="button to add todo item">Add</button>
