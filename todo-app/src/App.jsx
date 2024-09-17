@@ -11,34 +11,34 @@ const App = () => {
   }
 
   const deleteTodo = (index) => {
-    const updatedTodos = todos.filter((_, i) => i !== index)
+    const updatedTodos = todos.filter((_, i) => i !== index);
     setTodos(updatedTodos);
   }
 
   const handleKeyDown = ({ key }) => {
-    if (key === 'Enter') {
+    if (key === "Enter") {
       addTodo();
     }
   }
 
   return (
     <div>
-      <h3>Todo list</h3>
-      {/* Add input field to accept user input */}
-      <input
+      {/* Add input field to add todo item */}
+      <input 
         type="text"
-        placeholder="Add the todo item here..."
+        placeholder="Add todo item here..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         aria-label="Todo input"
       />
       <button onClick={addTodo} aria-label="button to add todo item">Add</button>
-
-      {/* Display todo list */}
+      
+      {/* Display the todo items */}
+      <h3>Todo list:</h3>
       <ul>
         {todos.map((todo, index) => (
-          <li key={(index)}>
+          <li key={index}>
             {todo}
             <button onClick={() => deleteTodo(index)} aria-label="button to delete a todo item">Delete</button>
           </li>
