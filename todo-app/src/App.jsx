@@ -10,12 +10,17 @@ const App = () => {
     setInputValue("");
   }
 
+  const deleteTodo = (index) => {
+    const updatedTodos = todos.filter((_, i) => i !== index)
+    setTodos(updatedTodos);
+  }
+
   return (
     <div>
       <h3>Todo list</h3>
       {/* Add input field to accept user input */}
       <input
-        type="textbox"
+        type="text"
         placeholder="Add the todo item here..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
@@ -26,7 +31,10 @@ const App = () => {
       {/* Display todo list */}
       <ul>
         {todos.map((todo, index) => (
-          <li key={(index)}>{todo}</li>
+          <li key={(index)}>
+            {todo}
+            <button onClick={() => deleteTodo(index)} aria-label="button to delete a todo item">Delete</button>
+          </li>
         ))}
       </ul>
     </div>
