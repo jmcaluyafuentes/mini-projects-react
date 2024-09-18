@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const AddTodo = () => {
-    const [todos, setTodos] = useState([]);
+const AddTodo = ({ todos, setTodos }) => {
     const [inputValue, setInputValue] = useState('');
 
     const addTodo = () => {

@@ -1,12 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const TodoList = () => {
-    const todos = [
-        "one",
-        "two",
-        "three"
-    ]
+const TodoList = ({ todos }) => {
 
   return (
     <div>
