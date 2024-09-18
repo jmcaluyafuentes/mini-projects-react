@@ -18,14 +18,17 @@ const AddTodo = ({ todos, setTodos }) => {
 
   return (
     <div className="add-todo">
-        <input
-            type="text" 
-            placeholder="Add todo item here..."
-            onChange={(e) => setInputValue(e.target.value)}
-            value={inputValue}
-            onKeyDown={handleKeyDown}
-        />
-        <button onClick={addTodo}>Add Todo</button>
+        <div className="input-button-container">
+            <input
+                type="text" 
+                placeholder="Add todo item here..."
+                onChange={(e) => setInputValue(e.target.value)}
+                value={inputValue}
+                onKeyDown={handleKeyDown}
+                className="input"
+            />
+            <button onClick={addTodo} style={{ display: 'inline-block' }}>Add Todo</button>
+        </div>
 
         <TodoList todos={todos} setTodos={setTodos}/>
     </div>

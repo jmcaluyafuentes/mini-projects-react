@@ -10,16 +10,16 @@ const TodoList = ({ todos, setTodos }) => {
     }
 
   return (
-    <div>
+    <div className="todo-list">
         <h2>Todo List</h2>
-        <ul>
+        <ol>
             {todos.map((todo, index) => (
                 <li key={index}>
                     {todo}
                     <button onClick={() => deleteTodo(index)}>Delete</button>
                 </li>
             ))}
-        </ul>
+        </ol>
         <Link to="/" className="button" style={{ backgroundColor: "green" }}>Back to home</Link>
     </div>
   )
