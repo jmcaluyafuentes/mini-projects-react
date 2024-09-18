@@ -36,7 +36,7 @@ const TaskInput = ({ addTask }) => {
                 <option value="Pending">Pending</option>
                 <option value="Completed">Completed</option>
             </select>
-            <button type="submit">Add Task</button>
+            <button type="submit" style={{ marginTop: "10px" }}>Add Task</button>
         </form>
     </div>
   )
