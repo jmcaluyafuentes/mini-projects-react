@@ -3,12 +3,18 @@
     min-height: 100vh;
 }
 
+.page {
+    display: flex;
+    margin-top: 10vh;
+    align-items: center;
+    flex-direction: column;
+}
+
 .task-input {
+    margin-top: 20px;
     width: 100%;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
-    margin-top: 20vh;
 }
 
 .task-input-form {

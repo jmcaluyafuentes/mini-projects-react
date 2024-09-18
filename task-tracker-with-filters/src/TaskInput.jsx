@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react'
 
-const TaskInput = () => {
+const TaskInput = ({ addTask }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('pending');
-    const [tasks, setTasks] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newTask = ({ title, description, status });
-        setTasks([...tasks, newTask]);
+        addTask({ title, description, status });
         setTitle('');
         setDescription('');
         setStatus('Pending');
     }
-
-    useEffect(() => {
-        console.log(tasks)
-    }, [tasks])
 
   return (
     <div className="task-input">
@@ -27,6 +21,7 @@ const TaskInput = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Title"
+
             />
             <textarea
                 placeholder="Description"
