@@ -15,8 +15,8 @@ function App() {
       <div className="page">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/todo/add" element={<AddTodo todos={todos} setTodos={setTodos} />} />
-          <Route path="/todo/list" element={<TodoList todos={todos} />} />
+          <Route path="/todo/add" element={<AddTodo todos={ todos } setTodos={ setTodos } />} />
+          <Route path="/todo/list" element={<TodoList todos={ todos } setTodos={ setTodos }/>} />
         </Routes>
       </div>
     </>
