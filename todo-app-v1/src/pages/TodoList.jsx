@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Todo = () => {
+const TodoList = () => {
     const todos = [
         "one",
         "two",
@@ -15,8 +16,9 @@ const Todo = () => {
                 <li key={index}>{todo}</li>
             ))}
         </ul>
+        <Link to="/" className="button" style={{ backgroundColor: "green" }}>Back to home</Link>
     </div>
   )
 }
 
-export default Todo
+export default TodoList

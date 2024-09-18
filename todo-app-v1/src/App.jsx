@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
-import Todo from './pages/Todo'
+import TodoList from './pages/TodoList'
+import AddTodo from './components/AddTodo'
 
 function App() {
 
@@ -13,7 +14,8 @@ function App() {
       <div className="page">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/todo" element={<Todo />} />
+          <Route path="/todo/add" element={<AddTodo />} />
+          <Route path="/todo/list" element={<TodoList />} />
         </Routes>
       </div>
     </>
