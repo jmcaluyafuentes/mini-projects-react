@@ -14,14 +14,19 @@ function App() {
 
   useEffect(() => {
     console.log(tasks);
+    console.log(filteredTasks);
   },[tasks])
+
+  const filteredTasks = tasks.filter((task) => 
+    filter === "All" || task.status === filter
+  )
 
   return (
     <>
       <div className="page">
         <Filter filter={filter} setFilter={setFilter} />
         <TaskInput addTask={addTask} />
-        <TaskList tasks={tasks} />
+        <TaskList tasks={filteredTasks} />
       </div>
     </>
   )

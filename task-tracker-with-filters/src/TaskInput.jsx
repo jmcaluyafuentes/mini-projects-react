@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 const TaskInput = ({ addTask }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [status, setStatus] = useState('pending');
+    const [status, setStatus] = useState('Pending');
 
     const handleSubmit = (e) => {
         e.preventDefault();
