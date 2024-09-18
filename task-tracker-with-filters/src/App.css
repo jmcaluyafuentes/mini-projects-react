@@ -1,0 +1,18 @@
+#root {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.task-input {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 20vh;
+}
+
+.task-input-form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
