@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react'
-
-const Display = ({ inputNumber }) => {
+const Display = ({ inputValue }) => {
 
   return (
     <div className="display">
-        {inputNumber}
+        {inputValue}
     </div>
   )
 }
