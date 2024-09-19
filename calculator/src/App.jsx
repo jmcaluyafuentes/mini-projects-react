@@ -4,34 +4,47 @@ import Display from './Display'
 import CalculatorButtons from './CalculatorButtons';
 
 function App() {
-  const [inputValue, setInputValue] = useState('');
-  const [decimalPoint, setDecimalPoint] = useState(0);
+  const [inputValue, setInputValue] = useState('0');
+  const [decimalPointCounter, setDecimalPointCounter] = useState(0);
   const [firstNumber, setFirstNumber] = useState('');
-  const [operator, setoperator] = useState('');
+  const [operator, setOperator] = useState('');
+  const [freshStart, setFreshStart] = useState(true);
 
   const buttonPress = (e) => {
     const value = e.target.textContent;
 
+    if (freshStart) {
+      setInputValue('');
+      setFreshStart(false);
+      calculator(value);
+    } else {
+      calculator(value);
+    }
+  }
+
+  const calculator = (value) => {
     if (Number.isFinite(Number(value))) {
       if (operator === '') {
         constructNumber(value);
       } else {
-        setInputValue('');
         constructNumber(value);
       }
     } else if (value === '.') {
-      if (decimalPoint === 0) {
-        setDecimalPoint(decimalPoint + 1);
+      if (decimalPointCounter === 0) {
+        setDecimalPointCounter(decimalPointCounter + 1);
         constructNumber(value);
       }
     } else if (value === "/" || value === "X" || value === "-" || value === "+") {
       setFirstNumber(inputValue);
-      setoperator(value);
+      setOperator(value);
       setInputValue(value);
-      setDecimalPoint(0);
+      setDecimalPointCounter(0);
+      setFreshStart(true);
     } else if (value === '=') {
       const result = calculate();
       setInputValue(result);
+    } else if (value === 'AC') {
+      reset();
     }
   }
 
@@ -74,6 +87,14 @@ function App() {
     }
 
     return result;
+  }
+
+  const reset = () => {
+    setInputValue('0');
+    setDecimalPointCounter(0);
+    setFirstNumber('');
+    setOperator('');
+    setFreshStart(true);
   }
 
   return (
