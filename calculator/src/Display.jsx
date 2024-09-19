@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
-const Display = () => {
-    const [input, setInput] = useState("");
-
-    useEffect(() => {
-        setInput('1 + 2');
-    }, [])
+const Display = ({ inputNumber }) => {
 
   return (
     <div className="display">
-        {input}
+        {inputNumber}
     </div>
   )
 }
