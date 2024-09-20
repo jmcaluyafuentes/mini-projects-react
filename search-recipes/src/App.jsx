@@ -3,18 +3,12 @@ import './App.css'
 
 function App() {
 
-  const options = [
-    'apple',
-    'banana',
-    'guava',
-    'kiwifruit'
-  ]
-
   const [searchCriteria, setSearchCriteria] = useState([]);
+  const [recipes, setRecipes] = useState([]);
 
-  const handleSelection = (option) => {
+  const handleSelection = (recipe) => {
     setSearchCriteria(prev => 
-      prev.includes(option) ? prev.filter((p) => p !== option) : [...prev, option]
+      prev.includes(recipe) ? prev.filter((p) => p !== recipe) : [...prev, recipe]
     )
   }
 
@@ -22,17 +16,35 @@ function App() {
     console.log(searchCriteria);
   }, [searchCriteria]);
 
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch('https://jellybellywikiapi.onrender.com/api/Recipes');
+        if (!response.ok) {
+          throw new Error ('Network response was not ok');
+        }
+        const data = await response.json();
+        const items = data.items;
+        setRecipes(items);
+      } catch (error) {
+        console.error('Error fetching recipes: ', error)
+      }
+    }
+
+  fetchRecipes();
+  }, [])
+
   return (
-    <div>
-      {options.map((option) => (
-        <label key={option}>
+    <div className="recipe-options">
+      {recipes.map((recipe) => (
+        <label key={recipe.recipeId}>
           <input 
             type="checkbox" 
-            value={option}
-            checked={searchCriteria.includes(option)}
-            onChange={() => handleSelection(option)}
+            value={recipe.name}
+            checked={searchCriteria.includes(recipe.name)}
+            onChange={() => handleSelection(recipe.name)}
           />
-          {option}
+          {recipe.name}
         </label>
       ))}
     </div>
