@@ -5,15 +5,17 @@ function App() {
 
   const [searchCriteria, setSearchCriteria] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [selectedRecipes, setSelectedRecipes] = useState([]);
 
-  const handleSelection = (recipe) => {
+  const handleSelection = (recipeId) => {
     setSearchCriteria(prev => 
-      prev.includes(recipe) ? prev.filter((p) => p !== recipe) : [...prev, recipe]
+      prev.includes(recipeId) ? prev.filter((p) => p !== recipeId) : [...prev, recipeId]
     )
   }
 
   useEffect(() => {
-    console.log(searchCriteria);
+    // console.log(searchCriteria);
+    console.log(selectedRecipes)
   }, [searchCriteria]);
 
   useEffect(() => {
@@ -34,19 +36,45 @@ function App() {
   fetchRecipes();
   }, [])
 
+  const displayRecipes = () => {
+    const updatedRecipes = [];
+    // console.log(searchCriteria)
+    for (let i = 0; i < searchCriteria.length; i++) {
+      // console.log(searchCriteria[i])
+      const matchedRecipe = recipes.find((recipe) => recipe.recipeId === searchCriteria[i]);
+      updatedRecipes.push(matchedRecipe);
+    }
+    setSelectedRecipes(updatedRecipes);
+  }
+
   return (
-    <div className="recipe-options">
-      {recipes.map((recipe) => (
-        <label key={recipe.recipeId}>
-          <input 
-            type="checkbox" 
-            value={recipe.name}
-            checked={searchCriteria.includes(recipe.name)}
-            onChange={() => handleSelection(recipe.name)}
-          />
-          {recipe.name}
-        </label>
-      ))}
+    <div>
+      <h2 className="title">Select one or more recipes</h2>
+      <div className="recipe-options">
+        {recipes.map(({ recipeId, name }) => (
+          <label key={recipeId}>
+            <input 
+              type="checkbox" 
+              value={name}
+              checked={searchCriteria.includes(recipeId)}
+              onChange={() => handleSelection(recipeId)}
+              />
+            {name}
+          </label>
+        ))}
+      </div>
+      <button onClick={displayRecipes}>Search</button>
+      <div className="recipes-container">
+        {selectedRecipes.map((recipe) => (
+          <div key={recipe.recipeId} className="recipe-container">
+            <img src={recipe.imageUrl} className="recipe-img"/>
+            <h2>{recipe.name}</h2>
+            <p>{recipe.description}</p>
+            {recipe.prepTime ? <p>Prep time: {recipe.prepTime}</p> : null}
+            {recipe.cookTime ? <p>Prep time: {recipe.cookTime}</p> : null}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
