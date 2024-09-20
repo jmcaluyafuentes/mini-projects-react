@@ -9,6 +9,13 @@
   min-height: 100vh;
 }
 
+.search-recipes {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  flex-direction: column;
+}
+
 .title {
   margin-top: 20px;
   text-align: center;
@@ -16,24 +23,35 @@
 
 .recipe-options {
   width: 80%;
-  margin: auto;
+  margin: 20px auto;
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  border-radius: 10px;
+  color: black;
+  background-color: rgb(251, 255, 222);
+}
+
+.search-button {
+  margin: 0 auto 20px;
 }
 
 .recipes-container {
+  width: 80%;
+  margin: auto;
   padding: 10px;
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, 1fr);
-  border: 1px solid white;
-  border-radius: 10px;
 }
 
 .recipe-container {
   display: flex;
   flex-direction: column;
+  background-color: lightblue;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .recipe-img {
