@@ -36,6 +36,11 @@
   margin: 0 auto 20px;
 }
 
+.no-recipes-selected {
+  text-align: center;
+  color: red;
+}
+
 .recipes-container {
   width: 80%;
   margin: auto;

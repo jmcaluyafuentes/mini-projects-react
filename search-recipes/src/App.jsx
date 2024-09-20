@@ -6,6 +6,7 @@ function App() {
   const [searchCriteria, setSearchCriteria] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipes, setSelectedRecipes] = useState([]);
+  const [searchButtonClick, setSearchButtonClick] = useState(false);
 
   const handleSelection = (recipeId) => {
     setSearchCriteria(prev => 
@@ -32,6 +33,7 @@ function App() {
   }, [])
 
   const displayRecipes = () => {
+    setSearchButtonClick(true);
     const updatedRecipes = [];
     for (let i = 0; i < searchCriteria.length; i++) {
       const matchedRecipe = recipes.find((recipe) => recipe.recipeId === searchCriteria[i]);
@@ -59,7 +61,11 @@ function App() {
         <button onClick={displayRecipes} className="search-button">Search</button>
       </div>
 
-      <div className="recipes-container">
+      {searchButtonClick === true && (
+        selectedRecipes.length === 0 ?
+        <div className="no-recipes-selected">Please select at least one recipe.</div>
+        :
+        <div className="recipes-container">
         {selectedRecipes.map((recipe) => (
           <div key={recipe.recipeId} className="recipe-container">
             <img src={recipe.imageUrl} className="recipe-img"/>
@@ -70,6 +76,7 @@ function App() {
           </div>
         ))}
       </div>
+      )}
     </div>
   )
 }
