@@ -10,31 +10,26 @@ function App() {
   const [operator, setOperator] = useState('');
   const [freshStart, setFreshStart] = useState(true);
 
+  // TODO: If result is 'Error', attempting for another calculation must result to "Error: Not a valid operation
+  // TODO: If inputValue has no decimal places, the display must have no decimal places.
+
   const buttonPress = (e) => {
     const value = e.target.textContent;
 
     if (freshStart) {
       setInputValue('');
       setFreshStart(false);
-      calculator(value);
-    } else {
-      calculator(value);
-    }
+    } 
+    calculator(value);
   }
 
   const calculator = (value) => {
     if (Number.isFinite(Number(value))) {
-      if (operator === '') {
-        constructNumber(value);
-      } else {
-        constructNumber(value);
+      constructNumber(value);
+    } else if (['+', '-', 'X', '/'].includes(value)) {
+      if (inputValue.includes('Error')) {
+        setInputValue('Invalid operation');
       }
-    } else if (value === '.') {
-      if (decimalPointCounter === 0) {
-        setDecimalPointCounter(decimalPointCounter + 1);
-        constructNumber(value);
-      }
-    } else if (value === "/" || value === "X" || value === "-" || value === "+") {
       setFirstNumber(inputValue);
       setOperator(value);
       setInputValue(value);
@@ -42,14 +37,19 @@ function App() {
       setFreshStart(true);
     } else if (value === '=') {
       const result = calculate();
-      setInputValue(result);
+      setInputValue(result.toString());
     } else if (value === 'AC') {
       reset();
     }
   }
 
   const constructNumber = (value) => {
-    setInputValue(prev => prev + value);
+    if (value === '.') {
+      // If there's already a decimal point, do nothing
+      if (decimalPointCounter > 0) return;
+      setDecimalPointCounter(decimalPointCounter + 1);
+    }
+    setInputValue(prev => prev === '0' ? value : prev + value);
   }
 
   useEffect(() => {
@@ -74,18 +74,11 @@ function App() {
         result = num1 * num2;
         break;
       case '/':
-        if (num2 != 0) {
-          result = num1 / num2;
-        } else {
-          console.error('Cannot divide by zero')
-          result = 'Error: Cannot divide by zero';
-        }
+        result = num2 !== 0 ? (num1 / num2).toFixed(2) : 'Error: Cannot divide by zero';
         break;
       default:
-        console.error('Invalid operator')
-        result = 'Error';
+        result = 'Error: Invalid operation';
     }
-
     return result;
   }
 

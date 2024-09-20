@@ -19,7 +19,7 @@ const CalculatorButtons = ({ buttonPress }) => {
         <button className="calc-button" onClick={buttonPress}>2</button>
         <button className="calc-button" onClick={buttonPress}>3</button>
         <button className="calc-button" onClick={buttonPress}>+</button>
-        <button className="calc-button" onClick={buttonPress}> </button>
+        <button className="calc-button"> </button>
         <button className="calc-button" onClick={buttonPress}>0</button>
         <button className="calc-button" onClick={buttonPress}>.</button>
         <button className="calc-button" onClick={buttonPress}>=</button>
