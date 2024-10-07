@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import '../index.css'
 
 const Home = () => {
-
   return (
-    <div className="home-page">
-        <h1>Welcome to Task Manager</h1>
-        <Link to="/todo/add" className="button">Add Todo Item</Link>
-        <Link to="/todo/list" className="view-link">View Todo List</Link>
+    <div id='home'>
+        <h1>Task Manager</h1>
+        <Link to='/todo/add'>Add Todo Item</Link>
+        <Link to='/todo/list'>See Todo List</Link>
     </div>
   )
 }

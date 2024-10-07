@@ -1,38 +1,38 @@
 import React, { useState } from 'react'
-import TodoList from '../pages/TodoList'
 
-const AddTodo = ({ todos, setTodos }) => {
-    const [inputValue, setInputValue] = useState('');
+const AddTodo = () => {
+    const [ value, setValue ] = useState('');
+    const [ todos, setTodos ] = useState([]);
 
-    const addTodo = () => {
-        if (inputValue.trim() === "") return;
-        setTodos([...todos, inputValue]);
-        setInputValue("");
+    const handleClick = (e) => {
+        const value = e.target.value;
+        const trimmedValue = value.trim('');
+        setTodos([...todos, trimmedValue]);
     }
 
-    const handleKeyDown = ({ key }) => {
-        if (key === "Enter") {
-            addTodo();
+    const handleKeydown = (e) => {
+        const key = e.key;
+        if (key === 'Enter') {
+            handleClick(e);
         }
     }
 
-  return (
-    <div className="add-todo">
-        <div className="input-button-container">
-            <input
-                type="text" 
-                placeholder="Add todo item here..."
-                onChange={(e) => setInputValue(e.target.value)}
-                value={inputValue}
-                onKeyDown={handleKeyDown}
-                className="input"
+    return (
+        <div>
+            <input 
+                type="text"
+                value={value}
+                placeholder='Input todo item...'
+                onChange={(e) => setValue(e.target.value)}
+                onKeyDown={handleKeydown}
             />
-            <button onClick={addTodo} style={{ display: 'inline-block' }}>Add Todo</button>
+            <ol>
+                {todos.map((todo, index) => (
+                    <li key={index}>{todo}</li>
+                ))}
+            </ol>
         </div>
-
-        <TodoList todos={todos} setTodos={setTodos}/>
-    </div>
-  )
+    )
 }
 
 export default AddTodo
