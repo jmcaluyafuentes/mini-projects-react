@@ -13,6 +13,7 @@ const App = () => {
         <Routes>
             <Route path='' element={<Home />} />
             <Route path='/todo/add' element={<AddTodo />} />
+            <Route path='/todo/list' element={<TodoList />} />
         </Routes>
     </>
   )

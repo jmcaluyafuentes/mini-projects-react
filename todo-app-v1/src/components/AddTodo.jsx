@@ -4,17 +4,18 @@ const AddTodo = () => {
     const [ value, setValue ] = useState('');
     const [ todos, setTodos ] = useState([]);
 
-    const handleClick = (e) => {
-        const value = e.target.value;
+    const handleClick = () => {
         const trimmedValue = value.trim('');
-        setTodos([...todos, trimmedValue]);
-        setValue('');
+        if (trimmedValue) {    
+            setTodos([...todos, trimmedValue]);
+            setValue('');
+        }
     }
 
     const handleKeydown = (e) => {
         const key = e.key;
         if (key === 'Enter') {
-            handleClick(e);
+            handleClick();
         }
     }
 
@@ -25,13 +26,16 @@ const AddTodo = () => {
 
     return (
         <div className='page'>
-            <input 
-                type="text"
-                value={value}
-                placeholder='Add todo item...'
-                onChange={(e) => setValue(e.target.value)}
-                onKeyDown={handleKeydown}
-            />
+            <div>
+                <input 
+                    type="text"
+                    value={value}
+                    placeholder='Add todo item...'
+                    onChange={(e) => setValue(e.target.value)}
+                    onKeyDown={handleKeydown}
+                    />
+                <button onClick={handleClick}>Add</button>
+            </div>
             <ol>
                 {todos.map((todo, index) => (
                     <li key={index}>
