@@ -8,6 +8,7 @@ const AddTodo = () => {
         const value = e.target.value;
         const trimmedValue = value.trim('');
         setTodos([...todos, trimmedValue]);
+        setValue('');
     }
 
     const handleKeydown = (e) => {
@@ -17,18 +18,26 @@ const AddTodo = () => {
         }
     }
 
+    const handleDelete = (index) => {
+        const newTodos = todos.filter((_, i) => i !== index);
+        setTodos(newTodos);
+    }
+
     return (
-        <div>
+        <div className='page'>
             <input 
                 type="text"
                 value={value}
-                placeholder='Input todo item...'
+                placeholder='Add todo item...'
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={handleKeydown}
             />
             <ol>
                 {todos.map((todo, index) => (
-                    <li key={index}>{todo}</li>
+                    <li key={index}>
+                        {todo}
+                        <button onClick={() => handleDelete(index)}>Delete</button>
+                    </li>
                 ))}
             </ol>
         </div>

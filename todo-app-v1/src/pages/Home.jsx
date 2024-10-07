@@ -4,7 +4,7 @@ import '../index.css'
 
 const Home = () => {
   return (
-    <div id='home'>
+    <div className='page'>
         <h1>Task Manager</h1>
         <Link to='/todo/add'>Add Todo Item</Link>
         <Link to='/todo/list'>See Todo List</Link>

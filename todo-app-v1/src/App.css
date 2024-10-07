@@ -12,7 +12,7 @@ nav {
     align-items: center;
 }
 
-#home {
+.page {
     min-height: 95vh;
     display: flex;
     justify-content: center;
